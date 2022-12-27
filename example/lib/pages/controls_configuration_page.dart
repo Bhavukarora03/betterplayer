@@ -15,7 +15,7 @@ class _ControlsConfigurationPageState extends State<ControlsConfigurationPage> {
   void initState() {
     BetterPlayerControlsConfiguration controlsConfiguration =
         BetterPlayerControlsConfiguration(
-      controlBarColor: Colors.indigoAccent.withAlpha(200),
+      controlBarColor: Colors.black.withOpacity(0.3),
       iconsColor: Colors.lightGreen,
       playIcon: Icons.forward,
       progressBarPlayedColor: Colors.grey,
@@ -24,7 +24,7 @@ class _ControlsConfigurationPageState extends State<ControlsConfigurationPage> {
       enableFullscreen: false,
       controlBarHeight: 60,
       loadingColor: Colors.red,
-      overflowModalColor: Colors.indigo,
+      overflowModalColor: Colors.red,
       overflowModalTextColor: Colors.white,
       overflowMenuIconsColor: Colors.white,
     );

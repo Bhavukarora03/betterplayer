@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 ///Menu item data used in overflow menu (3 dots).
 class BetterPlayerOverflowMenuItem {
   ///Icon of menu item
-  final IconData icon;
+
 
   ///Title of menu item
   final String title;
@@ -12,5 +12,7 @@ class BetterPlayerOverflowMenuItem {
   ///Callback when item is clicked
   final Function() onClicked;
 
-  BetterPlayerOverflowMenuItem(this.icon, this.title, this.onClicked);
+  final Widget trailing;
+
+  BetterPlayerOverflowMenuItem({required this.title, required this.onClicked, required this.trailing});
 }

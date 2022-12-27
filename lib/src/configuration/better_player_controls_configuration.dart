@@ -45,6 +45,9 @@ class BetterPlayerControlsConfiguration {
   ///Flag used to enable/disable mute
   final bool enableMute;
 
+  ///Flag used to add notes
+  final bool enableAddNote;
+
   ///Flag used to enable/disable progress texts
   final bool enableProgressText;
 
@@ -85,7 +88,12 @@ class BetterPlayerControlsConfiguration {
   ///Flag used to show/hide controls
   final bool showControls;
 
+  ///
+  final VoidCallback? onCaptionToggle;
+
   ///Flag used to show controls on init
+  ///
+  final IconData onCaptionToggleIcon;
   final bool showControlsOnInitialize;
 
   ///Control bar height
@@ -103,6 +111,8 @@ class BetterPlayerControlsConfiguration {
 
   ///Flag used to show/hide subtitles
   final bool enableSubtitles;
+
+  final bool enableLangue;
 
   ///Flag used to show/hide qualities
   final bool enableQualities;
@@ -158,10 +168,19 @@ class BetterPlayerControlsConfiguration {
   ///Color of the bottom modal sheet used for overflow menu items.
   final Color overflowModalColor;
 
+  ///onaddNote
+  final VoidCallback? onAddNote;
+  final IconData onAddNoteIcon;
+
   ///Color of text in bottom modal sheet used for overflow menu items.
   final Color overflowModalTextColor;
 
   const BetterPlayerControlsConfiguration({
+    this.onAddNoteIcon = Icons.note_add_outlined,
+    this.onAddNote,
+    this.onCaptionToggleIcon = Icons.closed_caption,
+    this.onCaptionToggle,
+    this.enableLangue = false,
     this.controlBarColor = Colors.black87,
     this.textColor = Colors.white,
     this.iconsColor = Colors.white,
@@ -175,12 +194,13 @@ class BetterPlayerControlsConfiguration {
     this.skipForwardIcon = Icons.forward_10_outlined,
     this.enableFullscreen = true,
     this.enableMute = true,
+    this.enableAddNote = true,
     this.enableProgressText = true,
     this.enableProgressBar = true,
     this.enableProgressBarDrag = true,
     this.enablePlayPause = true,
     this.enableSkips = true,
-    this.enableAudioTracks = true,
+    this.enableAudioTracks = false,
     this.progressBarPlayedColor = Colors.white,
     this.progressBarHandleColor = Colors.white,
     this.progressBarBufferedColor = Colors.white70,
@@ -195,11 +215,11 @@ class BetterPlayerControlsConfiguration {
     this.enableOverflowMenu = true,
     this.enablePlaybackSpeed = true,
     this.enableSubtitles = true,
-    this.enableQualities = true,
+    this.enableQualities = false,
     this.enablePip = true,
     this.enableRetry = true,
     this.overflowMenuCustomItems = const [],
-    this.overflowMenuIcon = Icons.more_vert_outlined,
+    this.overflowMenuIcon = Icons.settings_outlined,
     this.pipMenuIcon = Icons.picture_in_picture_outlined,
     this.playbackSpeedIcon = Icons.shutter_speed_outlined,
     this.qualitiesIcon = Icons.hd_outlined,

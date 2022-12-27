@@ -106,6 +106,19 @@ class _BetterPlayerMaterialControlsState
               right: 0,
               child: _buildTopBar(),
             ),
+            Positioned(
+              top: 0,
+              left: 0,
+              right: 40,
+              child: _buildSubtitlesToggle(),
+            ),
+            Positioned(
+              top: 0,
+              left: 0,
+              right: 80,
+              child: _buildAddNote(),
+            ),
+
             Positioned(bottom: 0, left: 0, right: 0, child: _buildBottomBar()),
             _buildNextVideoWidget(),
           ],
@@ -180,6 +193,66 @@ class _BetterPlayerMaterialControlsState
         ),
       );
     }
+  }
+
+  Widget _buildAddNote() {
+    if (!betterPlayerController!.controlsEnabled) {
+      return const SizedBox();
+    }
+    return Container(
+      child: (_controlsConfiguration.enableOverflowMenu)
+          ? AnimatedOpacity(
+              opacity: controlsNotVisible ? 0.0 : 1.0,
+              duration: _controlsConfiguration.controlsHideTime,
+              onEnd: _onPlayerHide,
+              child: Container(
+                height: _controlsConfiguration.controlBarHeight,
+                width: double.infinity,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    IconButton(
+                        onPressed: _controlsConfiguration.onAddNote,
+                        icon: Icon(
+                          _controlsConfiguration.onAddNoteIcon,
+                          color: _controlsConfiguration.iconsColor,
+                        )),
+                  ],
+                ),
+              ),
+            )
+          : const SizedBox(),
+    );
+  }
+
+  Widget _buildSubtitlesToggle() {
+    if (!betterPlayerController!.controlsEnabled) {
+      return const SizedBox();
+    }
+    return Container(
+      child: (_controlsConfiguration.enableOverflowMenu)
+          ? AnimatedOpacity(
+              opacity: controlsNotVisible ? 0.0 : 1.0,
+              duration: _controlsConfiguration.controlsHideTime,
+              onEnd: _onPlayerHide,
+              child: Container(
+                height: _controlsConfiguration.controlBarHeight,
+                width: double.infinity,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    IconButton(
+                        onPressed: _controlsConfiguration.onCaptionToggle,
+                        icon: Icon(
+                          _controlsConfiguration.onCaptionToggleIcon,
+                          color: _controlsConfiguration.iconsColor,
+                        )),
+                  ],
+                ),
+              ),
+            )
+          : const SizedBox(),
+    );
   }
 
   Widget _buildTopBar() {
@@ -335,7 +408,7 @@ class _BetterPlayerMaterialControlsState
 
   Widget _buildExpandButton() {
     return Padding(
-      padding: EdgeInsets.only(right: 12.0),
+      padding: EdgeInsets.only(right: 25.0),
       child: BetterPlayerMaterialClickableWidget(
         onTap: _onExpandCollapse,
         child: AnimatedOpacity(
@@ -400,7 +473,9 @@ class _BetterPlayerMaterialControlsState
   Widget _buildHitAreaClickableButton(
       {Widget? icon, required void Function() onClicked}) {
     return Container(
-      constraints: const BoxConstraints(maxHeight: 80.0, maxWidth: 80.0),
+      height: 150,
+      width: 50,
+
       child: BetterPlayerMaterialClickableWidget(
         onTap: onClicked,
         child: Align(
@@ -699,7 +774,7 @@ class _BetterPlayerMaterialControlsState
       flex: 40,
       child: Container(
         alignment: Alignment.bottomCenter,
-        padding: const EdgeInsets.symmetric(horizontal: 12),
+        padding: const EdgeInsets.only(bottom: 0),
         child: BetterPlayerMaterialVideoProgressBar(
           _controller,
           _betterPlayerController,

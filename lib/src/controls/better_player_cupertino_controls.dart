@@ -296,6 +296,82 @@ class _BetterPlayerCupertinoControlsState
     );
   }
 
+  GestureDetector _buildAddNoteButton(
+    VideoPlayerController? controller,
+    Color backgroundColor,
+    Color iconColor,
+    double barHeight,
+    double iconSize,
+    double buttonPadding,
+  ) {
+    return GestureDetector(
+      onTap: () {
+        //onShowMoreClicked();
+      },
+      child: AnimatedOpacity(
+        opacity: controlsNotVisible ? 0.0 : 1.0,
+        duration: _controlsConfiguration.controlsHideTime,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(10.0),
+          child: Container(
+            decoration: BoxDecoration(
+              color: backgroundColor,
+            ),
+            child: Container(
+              height: barHeight,
+              padding: EdgeInsets.symmetric(
+                horizontal: buttonPadding,
+              ),
+              child: Icon(
+                Icons.note_add_outlined,
+                color: iconColor,
+                size: iconSize,
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  GestureDetector _buildClosedCaptionButton(
+    VideoPlayerController? controller,
+    Color backgroundColor,
+    Color iconColor,
+    double barHeight,
+    double iconSize,
+    double buttonPadding,
+  ) {
+    return GestureDetector(
+      onTap: () {
+        //onShowMoreClicked();
+      },
+      child: AnimatedOpacity(
+        opacity: controlsNotVisible ? 0.0 : 1.0,
+        duration: _controlsConfiguration.controlsHideTime,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(10.0),
+          child: Container(
+            decoration: BoxDecoration(
+              color: backgroundColor,
+            ),
+            child: Container(
+              height: barHeight,
+              padding: EdgeInsets.symmetric(
+                horizontal: buttonPadding,
+              ),
+              child: Icon(
+                Icons.note_add_outlined,
+                color: iconColor,
+                size: iconSize,
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
   GestureDetector _buildMoreButton(
     VideoPlayerController? controller,
     Color backgroundColor,
@@ -436,7 +512,7 @@ class _BetterPlayerCupertinoControlsState
 
   GestureDetector _buildSkipBack(Color iconColor, double barHeight) {
     return GestureDetector(
-      onTap: skipBack,
+      onDoubleTap: skipBack,
       child: Container(
         height: barHeight,
         color: Colors.transparent,
@@ -530,6 +606,34 @@ class _BetterPlayerCupertinoControlsState
           ),
           if (_controlsConfiguration.enableOverflowMenu)
             _buildMoreButton(
+              _controller,
+              backgroundColor,
+              iconColor,
+              barHeight,
+              iconSize,
+              buttonPadding,
+            )
+          else
+            const SizedBox(),
+          const SizedBox(
+            width: 12,
+          ),
+          if (_controlsConfiguration.enableOverflowMenu)
+            _buildAddNoteButton(
+              _controller,
+              backgroundColor,
+              iconColor,
+              barHeight,
+              iconSize,
+              buttonPadding,
+            )
+          else
+            const SizedBox(),
+          const SizedBox(
+            width: 16,
+          ),
+          if (_controlsConfiguration.enableOverflowMenu)
+            _buildClosedCaptionButton(
               _controller,
               backgroundColor,
               iconColor,

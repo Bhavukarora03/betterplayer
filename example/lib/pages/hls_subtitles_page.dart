@@ -28,9 +28,10 @@ class _HlsSubtitlesPageState extends State<HlsSubtitlesPage> {
       enablePip: true,
       enablePlayPause: true,
       enableMute: true,
+      enableAddNote: true,
       enableAudioTracks: true,
       enableProgressText: true,
-      enableSubtitles: true,
+
       showControlsOnInitialize: true,
       enablePlaybackSpeed: true,
       controlBarHeight: 40,

@@ -69,46 +69,43 @@ abstract class BetterPlayerControlsState<T extends StatefulWidget>
       child: Container(
         child: Column(
           children: [
+            Icon(
+              Icons.minimize_outlined,
+              size: 50,
+              color: Colors.grey,
+            ),
             if (betterPlayerControlsConfiguration.enablePlaybackSpeed)
-              _buildMoreOptionsListRow(
-                  betterPlayerControlsConfiguration.playbackSpeedIcon,
-                  translations.overflowMenuPlaybackSpeed, () {
+              _buildMoreOptionsListRow(translations.overflowMenuPlaybackSpeed,
+                  () {
                 Navigator.of(context).pop();
                 _showSpeedChooserWidget();
-              }),
-            if (betterPlayerControlsConfiguration.enableSubtitles)
-              _buildMoreOptionsListRow(
-                  betterPlayerControlsConfiguration.subtitlesIcon,
-                  translations.overflowMenuSubtitles, () {
-                Navigator.of(context).pop();
-                _showSubtitlesSelectionWidget();
-              }),
+              }, SizedBox()),
             if (betterPlayerControlsConfiguration.enableQualities)
-              _buildMoreOptionsListRow(
-                  betterPlayerControlsConfiguration.qualitiesIcon,
-                  translations.overflowMenuQuality, () {
+              _buildMoreOptionsListRow(translations.overflowMenuQuality, () {
                 Navigator.of(context).pop();
                 _showQualitiesSelectionWidget();
-              }),
+              }, SizedBox()),
             if (betterPlayerControlsConfiguration.enableAudioTracks)
-              _buildMoreOptionsListRow(
-                  betterPlayerControlsConfiguration.audioTracksIcon,
-                  translations.overflowMenuAudioTracks, () {
+              _buildMoreOptionsListRow(translations.overflowMenuAudioTracks,
+                  () {
                 Navigator.of(context).pop();
                 _showAudioTracksSelectionWidget();
-              }),
+              }, SizedBox()),
             if (betterPlayerControlsConfiguration
                 .overflowMenuCustomItems.isNotEmpty)
               ...betterPlayerControlsConfiguration.overflowMenuCustomItems.map(
                 (customItem) => _buildMoreOptionsListRow(
-                  customItem.icon,
                   customItem.title,
                   () {
                     Navigator.of(context).pop();
                     customItem.onClicked.call();
                   },
+                  customItem.trailing,
                 ),
-              )
+              ),
+            SizedBox(
+              height: 40,
+            ),
           ],
         ),
       ),
@@ -116,25 +113,12 @@ abstract class BetterPlayerControlsState<T extends StatefulWidget>
   }
 
   Widget _buildMoreOptionsListRow(
-      IconData icon, String name, void Function() onTap) {
+      String name, void Function() onTap, Widget trailing) {
     return BetterPlayerMaterialClickableWidget(
       onTap: onTap,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
-        child: Row(
-          children: [
-            const SizedBox(width: 8),
-            Icon(
-              icon,
-              color: betterPlayerControlsConfiguration.overflowMenuIconsColor,
-            ),
-            const SizedBox(width: 16),
-            Text(
-              name,
-              style: _getOverflowMenuElementTextStyle(false),
-            ),
-          ],
-        ),
+      child: ListTile(
+        title: Text(name),
+        trailing: SizedBox(width: 20, height: 20, child: trailing),
       ),
     );
   }

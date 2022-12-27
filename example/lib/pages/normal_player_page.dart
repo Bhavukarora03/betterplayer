@@ -11,6 +11,7 @@ class NormalPlayerPage extends StatefulWidget {
 class _NormalPlayerPageState extends State<NormalPlayerPage> {
   late BetterPlayerController _betterPlayerController;
   late BetterPlayerDataSource _betterPlayerDataSource;
+  GlobalKey _betterPlayerKey = GlobalKey();
 
   @override
   void initState() {
@@ -18,8 +19,42 @@ class _NormalPlayerPageState extends State<NormalPlayerPage> {
         BetterPlayerConfiguration(
       aspectRatio: 16 / 9,
       fit: BoxFit.contain,
+
       autoPlay: true,
       looping: true,
+      controlsConfiguration: BetterPlayerControlsConfiguration(
+        controlBarColor: Colors.black26.withOpacity(0.5),
+        onAddNote: () {
+          _betterPlayerController.enablePictureInPicture(_betterPlayerKey);
+        },
+        enablePlayPause: false,
+        enableSubtitles: true,
+        playIcon: Icons.play_arrow_rounded,
+        progressBarPlayedColor: Colors.blueAccent,
+        overflowMenuCustomItems: [
+          BetterPlayerOverflowMenuItem(
+            title: "Subtitles",
+            onClicked: () {
+              print("Add note clicked");
+            },
+            trailing: Icon(Icons.subtitles_outlined),
+          ),
+          BetterPlayerOverflowMenuItem(
+            title: "Video Language",
+            onClicked: () {
+              print("Add note clicked");
+            },
+            trailing: Icon(Icons.language_outlined),
+          ),
+          BetterPlayerOverflowMenuItem(
+            title: "Enter Picture in Picture",
+            onClicked: () {
+              _betterPlayerController.enablePictureInPicture(_betterPlayerKey);
+            },
+            trailing: Text(""),
+          ),
+        ],
+      ),
       deviceOrientationsAfterFullScreen: [
         DeviceOrientation.portraitDown,
         DeviceOrientation.portraitUp
