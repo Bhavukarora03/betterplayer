@@ -110,13 +110,13 @@ class _BetterPlayerMaterialControlsState
               top: 0,
               left: 0,
               right: 40,
-              child: _buildSubtitlesToggle(),
+              child: _buildSubtitlesToggle(context),
             ),
             Positioned(
               top: 0,
               left: 0,
               right: 80,
-              child: _buildAddNote(),
+              child: _buildAddNote(context),
             ),
 
             Positioned(bottom: 0, left: 0, right: 0, child: _buildBottomBar()),
@@ -195,7 +195,7 @@ class _BetterPlayerMaterialControlsState
     }
   }
 
-  Widget _buildAddNote() {
+  Widget _buildAddNote(BuildContext context) {
     if (!betterPlayerController!.controlsEnabled) {
       return const SizedBox();
     }
@@ -225,7 +225,7 @@ class _BetterPlayerMaterialControlsState
     );
   }
 
-  Widget _buildSubtitlesToggle() {
+  Widget _buildSubtitlesToggle(BuildContext context) {
     if (!betterPlayerController!.controlsEnabled) {
       return const SizedBox();
     }

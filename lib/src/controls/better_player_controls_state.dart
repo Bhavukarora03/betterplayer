@@ -114,12 +114,14 @@ abstract class BetterPlayerControlsState<T extends StatefulWidget>
 
   Widget _buildMoreOptionsListRow(
       String name, void Function() onTap, Widget trailing) {
-    return BetterPlayerMaterialClickableWidget(
+    return ListTile(
       onTap: onTap,
-      child: ListTile(
-        title: Text(name),
-        trailing: SizedBox(width: 20, height: 20, child: trailing),
-      ),
+      title: Text(name),
+      trailing: Wrap(spacing: 12, children: [
+        trailing,
+
+      ],)
+
     );
   }
 

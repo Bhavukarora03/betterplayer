@@ -37,7 +37,7 @@ class _NormalPlayerPageState extends State<NormalPlayerPage> {
             onClicked: () {
               print("Add note clicked");
             },
-            trailing: Icon(Icons.subtitles_outlined),
+            trailing: Switch(value: true , onChanged: (value) {}),
           ),
           BetterPlayerOverflowMenuItem(
             title: "Video Language",
